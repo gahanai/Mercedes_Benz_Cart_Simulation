@@ -9,3 +9,6 @@ Steps to clone this repo in your local system :
    4. Run the colcon build command inside your workspace.
    
 We have two packages in this repository. "golf_cart_bringup" and "my_robot_description". The "golf_cart_bringup" package is used for simulation in Gazebo and the "my_robot_description" is used for simulatioon in Rviz.
+
+Contact us at : info@gahanai.com
+ 
