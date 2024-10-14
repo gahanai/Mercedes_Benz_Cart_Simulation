@@ -1,0 +1,820 @@
+<?xml version="1.0"?>
+<robot name="golf_cart">
+
+    <!-- Base link of the golf cart -->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0" length="0"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </visual>
+        <!-- <collision>
+            <geometry>
+                <cylinder radius="0.03" length="1"/>
+            </geometry>
+            <origin xyz="0 0 0.23" rpy="1.5708 0 1.5708"/>
+        </collision>
+        <inertial>
+            <mass value="10"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial> -->
+    </link>
+
+    <link name="rear_axle">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="1"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.5708 0 1.5708"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="1"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.5708 0 1.5708"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+  
+    <!-- Front axle -->
+    <link name="front_axle">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="1"/>
+            </geometry>
+            <origin xyz="0 1.68 0" rpy="1.5708 0 1.5708"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="1"/>
+            </geometry>
+            <origin xyz="0 1.68 0" rpy="1.5708 0 1.5708"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <!-- Base box -->
+    <link name="base_box">
+        <visual>
+            <geometry>
+                <box size="0.7 2.5 0.1"/> 
+            </geometry>
+            <origin xyz="0 0.8 0.02" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.7 2.5 0.1"/> 
+            </geometry>
+            <origin xyz="0 0.8 0.02" rpy="0 0 0"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <!-- Front left wheel -->
+    <link name="front_left_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.23" length="0.09"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.23" length="0.09"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <!-- Front left steering link -->
+    <link name="front_left_steering">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.1"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.1"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <!-- Joint for front left wheel drive -->
+    <joint name="front_left_wheel_joint" type="continuous">
+        <parent link="front_left_steering"/>
+        <child link="front_left_wheel"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/> <!-- Wheel rotates around X-axis -->
+    </joint>
+
+
+    
+
+    <!-- Front right wheel -->
+    <link name="front_right_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.23" length="0.09"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.23" length="0.09"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <!-- Front right steering link -->
+    <link name="front_right_steering">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.1"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.1"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <!-- Joint for front right wheel drive -->
+    <joint name="front_right_wheel_joint" type="continuous">
+        <parent link="front_right_steering"/>
+        <child link="front_right_wheel"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/> <!-- Wheel rotates around X-axis -->
+    </joint>
+    
+
+    <!-- Rear left wheel -->
+    <link name="rear_left_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.23" length="0.09"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.23" length="0.09"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <!-- Joint for front right wheel drive -->
+    <joint name="rear_left_wheel_joint" type="continuous">
+        <parent link="rear_axle"/>
+        <child link="rear_left_wheel"/>
+        <origin xyz="-0.5 0 0" rpy="0 1.5708 0"/>
+        <axis xyz="0 0 1"/> <!-- Wheel rotates around X-axis -->
+    </joint>
+
+    <!-- Rear right wheel -->
+    <link name="rear_right_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.23" length="0.09"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.23" length="0.09"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <!-- Joint for front right wheel drive -->
+    <joint name="rear_right_wheel_joint" type="continuous">
+        <parent link="rear_axle"/>
+        <child link="rear_right_wheel"/>
+        <origin xyz="0.5 0 0" rpy="0 1.5708 0"/>
+        <axis xyz="0 0 1"/> <!-- Wheel rotates around X-axis -->
+    </joint>
+
+    <!-- Roof top -->
+    <link name="roof_top">
+        <visual>
+            <geometry>
+                <box size="1.132 2.5 0.05"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/> 
+        </visual>
+        <collision>
+        <geometry>
+                <box size="1.132 2.5 0.05"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/> 
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="roof_top_joint" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="roof_top"/>
+        <origin xyz="0 0.72 1.545" rpy="0 0 0"/>
+    </joint>
+
+    <link name="left_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.9"/>
+            </geometry>
+            <origin xyz="0 0 0.5" rpy="0 0 1.5708"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.9"/>
+            </geometry>
+            <origin xyz="0 0 0.5" rpy="0 0 1.5708"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="left_support_joint" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="left_support"/>
+        <origin xyz="-0.32 0.15 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="left_mid_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.2"/>
+            </geometry>
+            <origin xyz="0.08 0 0.6" rpy="0 1.0472 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.2"/>
+            </geometry>
+            <origin xyz="0.08 0 0.6" rpy="0 1.0472 0"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="left_mid_support_joint" type="fixed">
+        <parent link="left_support"/>
+        <child link="left_mid_support"/>
+        <origin xyz="0 0 0.4" rpy="0 0 0"/>
+    </joint>
+
+    <link name="left_top_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.5"/>
+            </geometry>
+            <origin xyz="0.15 0 0.6" rpy="0 0 1.5708"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.5"/>
+            </geometry>
+            <origin xyz="0.15 0 0.6" rpy="0 0 1.5708"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="left_top_support_joint" type="fixed">
+        <parent link="left_mid_support"/>
+        <child link="left_top_support"/>
+        <origin xyz="0 0 0.29" rpy="0 0 0"/>
+    </joint>
+
+
+
+    <link name="right_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.9"/>
+            </geometry>
+            <origin xyz="0 0 0.5" rpy="0 0 1.5708"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.9"/>
+            </geometry>
+            <origin xyz="0 0 0.5" rpy="0 0 1.5708"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="right_support_joint" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="right_support"/>
+        <origin xyz="0.32 0.15 0" rpy="0 0 0"/>
+    </joint>
+  
+    <link name="right_mid_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.2"/>
+            </geometry>
+            <origin xyz="-0.08 0 0.6" rpy="0 -1.0472 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.2"/>
+            </geometry>
+            <origin xyz="-0.08 0 0.6" rpy="0 -1.0472 0"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="right_mid_support_joint" type="fixed">
+        <parent link="right_support"/>
+        <child link="right_mid_support"/>
+        <origin xyz="0 0 0.4" rpy="0 0 0"/>
+    </joint>
+
+    <link name="right_top_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.5"/>
+            </geometry>
+            <origin xyz="-0.15 0 0.6" rpy="0 0 1.5708"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.5"/>
+            </geometry>
+            <origin xyz="-0.15 0 0.6" rpy="0 0 1.5708"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="right_top_support_joint" type="fixed">
+        <parent link="right_mid_support"/>
+        <child link="right_top_support"/>
+        <origin xyz="0 0 0.29" rpy="0 0 0"/>
+    </joint>
+
+
+
+
+
+  <link name="front_left_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.42"/>
+            </geometry>
+            <origin xyz="0 0 0.25" rpy="0 0 1.5708"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.42"/>
+            </geometry>
+            <origin xyz="0 0 0.25" rpy="0 0 1.5708"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="front_left_support_joint" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="front_left_support"/>
+        <origin xyz="-0.32 1.9 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="front_left_mid_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.83"/>
+            </geometry>
+            <origin xyz="0 -0.25 0.38" rpy="0.6632 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.83"/>
+            </geometry>
+            <origin xyz="0 -0.25 0.38" rpy="0.6632 0 0"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="front_left_mid_support_joint" type="fixed">
+        <parent link="front_left_support"/>
+        <child link="front_left_mid_support"/>
+        <origin xyz="0 0 0.4" rpy="0 0 0"/>
+    </joint>
+
+    <link name="front_left_top_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.46"/>
+            </geometry>
+            <origin xyz="0 -0.49 0.6" rpy="0 0 1.5708"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.46"/>
+            </geometry>
+            <origin xyz="0 -0.49 0.6" rpy="0 0 1.5708"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="front_left_top_support_joint" type="fixed">
+        <parent link="front_left_mid_support"/>
+        <child link="front_left_top_support"/>
+        <origin xyz="0 0 0.29" rpy="0 0 0"/>
+    </joint>
+
+
+    <link name="front_right_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.42"/>
+            </geometry>
+            <origin xyz="0 0 0.25" rpy="0 0 1.5708"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.42"/>
+            </geometry>
+            <origin xyz="0 0 0.25" rpy="0 0 1.5708"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="front_right_support_joint" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="front_right_support"/>
+        <origin xyz="0.32 1.9 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="front_right_mid_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.83"/>
+            </geometry>
+            <origin xyz="0 -0.25 0.38" rpy="0.6632 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.83"/>
+            </geometry>
+            <origin xyz="0 -0.25 0.38" rpy="0.6632 0 0"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+    <joint name="front_right_mid_support_joint" type="fixed">
+        <parent link="front_right_support"/>
+        <child link="front_right_mid_support"/>
+        <origin xyz="0 0 0.4" rpy="0 0 0"/>
+    </joint>
+
+    <link name="front_right_top_support">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.46"/>
+            </geometry>
+            <origin xyz="0 -0.49 0.6" rpy="0 0 1.5708"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.03" length="0.46"/>
+            </geometry>
+            <origin xyz="0 -0.49 0.6" rpy="0 0 1.5708"/>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="front_right_top_support_joint" type="fixed">
+        <parent link="front_right_mid_support"/>
+        <child link="front_right_top_support"/>
+        <origin xyz="0 0 0.29" rpy="0 0 0"/>
+    </joint>
+
+ 
+     
+    <!-- <link name="left_cover">
+        <visual>
+            <geometry>
+                <cylinder radius="0.23" length="0.3"/> 
+            </geometry>
+            <origin xyz="0 0.8 0" rpy="0 0 0"/> 
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.23" length="0.3"/> 
+            </geometry>
+            <origin xyz="0 0.8 0" rpy="0 0 0"/> 
+        </collision>
+        <inertial>
+            <mass value="10"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <joint name="left_cover_joint" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="left_cover"/>
+        <origin xyz="-0.52 0.72 0.53" rpy="0 1.5708 0"/>
+    </joint> -->
+
+    
+
+    <!-- Fixed joints -->
+    <joint name="front_axle_joint" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="front_axle"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="base_box_joint" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="base_box"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="rear_axle_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="rear_axle"/>
+        <origin xyz="0 0 0.23" rpy="0 0 0"/>
+    </joint>
+            
+    <!-- front left Steering joint -->
+    <joint name="front_left_steering_joint" type="revolute">
+        <parent link="front_axle"/>
+        <child link="front_left_steering"/>
+        <origin xyz="-0.5 1.68 0" rpy="0 1.5708 0"/>
+        <axis xyz="1 0 0"/> <!-- Steering around the Z-axis -->
+        <limit lower="-0.488" upper="0.488" effort="100" velocity="1.0"/>
+    </joint>
+
+    <!-- front right Steering joint -->
+    <joint name="front_right_steering_joint" type="revolute">
+        <parent link="front_axle"/>
+        <child link="front_right_steering"/>
+        <origin xyz="0.5 1.68 0" rpy="0 1.5708 0"/>
+        <axis xyz="1 0 0"/> <!-- Steering around the Z-axis -->
+        <limit lower="-0.488" upper="0.488" effort="100" velocity="1.0"/>
+    </joint>
+
+
+
+    
+
+    <!-- Define sensors mounted -->
+    <link name="front_camera">
+        <visual>
+            <geometry>
+                <box size="0.2 0.1 0.1"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/> 
+        </visual>
+    </link>
+
+    <!-- Joint connecting camera to base -->
+  <joint name="front_camera_joint" type="fixed">
+    <parent link="rear_axle"/>
+    <child link="front_camera"/>
+    <origin xyz="0 1.6 0.85" rpy="0 0 1.5708"/> <!-- Position and orientation -->
+  </joint>
+
+    
+
+    <!-- Gazebo Camera sensor -->
+  <!-- <gazebo reference="front_camera">
+    <sensor type="camera" name="camera_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <camera>
+        <horizontal_fov>1.20428</horizontal_fov>
+        <image>
+          <width>1920</width>
+          <height>1080</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so"/>
+    </sensor>
+  </gazebo> -->
+
+     
+
+
+  <link name="front_radar">
+        <visual>
+            <geometry>
+                <box size="0.2 0.1 0.2"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/> 
+        </visual>
+    </link>
+
+    <!-- Fixed joints to radar to the body -->
+    <joint name="front_radar_joint" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="front_radar"/>
+        <origin xyz="0 1.96 0.42" rpy="0 0 0"/>
+    </joint>
+
+      
+
+   
+<link name="rear_radar">
+        <visual>
+            <geometry>
+                <box size="0.2 0.1 0.2"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/> 
+        </visual>
+    </link>
+
+    <joint name="rear_radar_joint" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="rear_radar"/>
+        <origin xyz="0 -0.44 0.42" rpy="0 0 0"/>
+    </joint>
+
+    
+    <link name="gnss">
+        <visual>
+            <geometry>
+                <box size="0.2 0.1 0.07"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/> 
+        </visual>
+    </link>
+
+    <!-- Fixed joints from cameras to the body -->
+    <joint name="gnss_joint" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="gnss"/>
+        <origin xyz="0.105 -0.065 0.54" rpy="0 0 0"/>
+    </joint>
+
+    <gazebo reference="front_camera">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor1" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>imu/data</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin1">
+        <topicName>imu</topicName>
+        <bodyName>imu_link</bodyName>
+        <updateRateHZ>10.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>imu_1</frameName>
+        <initialOrientationAsReference>false</initialOrientationAsReference>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+    
+
+    
+    <!-- Gazebo ackermann drive-->
+    <gazebo>
+    <plugin name="gazebo_ros_ackermann_drive" filename="libgazebo_ros_ackermann_drive.so">
+
+      <update_rate>100.0</update_rate>
+
+      <!-- wheels -->
+      <front_left_joint>front_left_wheel_joint</front_left_joint>
+      <front_right_joint>front_right_wheel_joint</front_right_joint>
+      <rear_left_joint>rear_left_wheel_joint</rear_left_joint>
+      <rear_right_joint>rear_right_wheel_joint</rear_right_joint>
+      <left_steering_joint>front_left_steering_joint</left_steering_joint>
+      <right_steering_joint>front_right_steering_joint</right_steering_joint>
+      <steering_wheel_joint>front_axle_joint</steering_wheel_joint>
+    
+
+      <!-- Max absolute steer angle for tyre in radians-->
+      <!-- Any cmd_vel angular z greater than this would be capped -->
+     
+
+      <!-- Max absolute steering angle of steering wheel -->
+      
+
+      <!-- Max absolute linear speed in m/s -->
+      <!-- <max_speed>80</max_speed> -->
+
+
+      <!-- PID tuning -->
+      <left_steering_pid_gain>1500 0 1</left_steering_pid_gain>
+      <left_steering_i_range>0 0</left_steering_i_range>
+      <right_steering_pid_gain>1500 0 1</right_steering_pid_gain>
+      <right_steering_i_range>0 0</right_steering_i_range>
+      <linear_velocity_pid_gain>1000 0 1</linear_velocity_pid_gain>
+      <linear_velocity_i_range>0 0</linear_velocity_i_range>
+
+      <!-- output -->
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
+      <publish_distance>true</publish_distance>
+      <publish_steerangle>true</publish_steerangle>
+
+      <odometry_frame>odom_demo</odometry_frame>
+      <robot_base_frame>rear_axle</robot_base_frame>
+
+    </plugin>
+    </gazebo>
+
+
+    
+    <!-- Gazebo camera plugin-->
+    <gazebo reference="front_camera">
+        <sensor name="front_camera" type="camera">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>10.0</update_rate>
+                <plugin name="camera_controller" filename="libgazebo_ros_camera.so"/>
+                <frame_name>front_camera</frame_name> 
+        </sensor> 
+    </gazebo> 
+
+    
+
+</robot>    

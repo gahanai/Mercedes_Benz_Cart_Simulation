@@ -1,0 +1,23 @@
+<world name="empty_world">
+  <plugin name="gazebo_ros_factory" filename="libgazebo_ros_factory.so"/>
+  <include>
+    <uri>model://sun</uri>
+  </include>
+  <include>
+    <uri>model://ground_plane</uri>
+  </include>
+  
+  <!-- You can include additional models or settings like lights here -->
+  
+  <physics type='ode'>
+    <max_step_size>0.001</max_step_size>
+    <real_time_factor>1.0</real_time_factor>
+  </physics>
+
+  <gui fullscreen='0'>
+    <camera name='user_camera'>
+      <pose>0 0 10 0 0 0</pose>
+    </camera>
+  </gui>
+</world>
+
